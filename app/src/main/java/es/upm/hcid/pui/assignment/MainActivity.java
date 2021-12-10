@@ -86,13 +86,14 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                // Log in
                 Properties prop = new Properties();
                 prop.setProperty(ModelManager.ATTR_LOGIN_USER, "DEV_TEAM_04");
                 prop.setProperty(ModelManager.ATTR_LOGIN_PASS, "123704");
                 prop.setProperty(ModelManager.ATTR_SERVICE_URL, "https://sanger.dia.fi.upm.es/pui-rest-news/");
                 prop.setProperty(ModelManager.ATTR_REQUIRE_SELF_CERT, "TRUE");
 
-                // Log in
+
                 try{
                     mm = new ModelManager(prop);
                 }catch (AuthenticationError e) {
