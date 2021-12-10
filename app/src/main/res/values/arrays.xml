@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner">
+        <item>All</item>
+        <item>National</item>
+        <item>Economy</item>
+        <item>International</item>
+        <item>Sports</item>
+        <item>Technology</item>
+    </string-array>
+</resources>
