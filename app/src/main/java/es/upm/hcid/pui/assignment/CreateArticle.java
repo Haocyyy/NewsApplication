@@ -107,7 +107,7 @@ public class CreateArticle extends AppCompatActivity {
 
 
     private void showToast(String text){
-        Toast.makeText(CreateActivity.this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateArticle.this, text, Toast.LENGTH_SHORT).show();
     }
 }
 
