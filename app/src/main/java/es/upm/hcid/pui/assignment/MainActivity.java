@@ -31,26 +31,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initView();
 
         try {
             initModelManager();
-
             getArticleList();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    Button btnCreate = findViewById(R.id.btn_create_article);
-    btnCreate.setOnClickListener(new View.OnClickListener(){
 
-        @Override
-        public void onClick(View view) {
-            Intent i = new Intent (MainActivity.this, CreateArticle.class);
-            startActivity(i);
-        }
-    });
-
+//        ((Button)findViewById(R.id.btn_create_article)).setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent (MainActivity.this, CreateArticle.class);
+//                startActivity(i);
+//            }
+//        });
     }
 
 
