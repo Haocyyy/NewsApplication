@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.rv_content);
         mArticleAdapter = new ArticleAdapter();
         mRecyclerView.setAdapter(mArticleAdapter);
+
     }
 
     private void getArticleList() {
