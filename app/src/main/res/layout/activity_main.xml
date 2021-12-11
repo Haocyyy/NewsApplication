@@ -41,9 +41,9 @@
         android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/btn_create_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="6dp"
@@ -52,12 +52,12 @@
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/login_button"
+            android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
-            app:srcCompat="@mipmap/login_button" />
+            app:srcCompat="@mipmap/login_button_foreground" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,9 +3,11 @@ package es.upm.hcid.pui.assignment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
@@ -39,7 +41,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    Button btnCreate = findViewById(R.id.btn_create_article);
+    btnCreate.setOnClickListener(new View.OnClickListener(){
+
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent (MainActivity.this, CreateArticle.class);
+            startActivity(i);
+        }
+    });
+
     }
+
 
     private void initView() {
         mSpinner = findViewById(R.id.sp_article);
