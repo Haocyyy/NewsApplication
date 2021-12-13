@@ -49,21 +49,37 @@
                 android:src="@android:drawable/ic_menu_report_image" />
 
             <Button
-                android:id="@+id/btn_select_image"
-                android:layout_width="166dp"
+                android:id="@+id/btn_delete_image"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Select Image" />
+                android:text="Delete Image"
+                />
+
+            <Button
+                android:id="@+id/btn_select_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select Image"
+                />
+
         </LinearLayout>
 
         <EditText
-            android:id="@+id/ArticleCategoryInput"
+            android:id="@+id/Indicator_for_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Category"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Category" />
+
+        <Spinner
+            android:id="@+id/SpinnerArticleCategoryInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinner"
+            />
 
         <EditText
             android:id="@+id/ArticleSubtitleInput"

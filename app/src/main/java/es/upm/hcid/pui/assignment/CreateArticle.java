@@ -20,6 +20,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.widget.Spinner;
+
 public class CreateArticle extends AppCompatActivity {
     private static final int REQUEST_CODE_OPEN_IMAGE = 1;
 
@@ -27,7 +29,7 @@ public class CreateArticle extends AppCompatActivity {
     EditText TitleArticle;
     EditText AbstractArticle;
     EditText BodyArticle;
-    EditText CategoryArticle;
+    private Spinner cSpinner;
     EditText SubtitleArticle;
     ImageView ArticleImageInput;
     Button btn_save_article;
@@ -40,7 +42,7 @@ public class CreateArticle extends AppCompatActivity {
         TitleArticle = findViewById(R.id.ArticleTitleInput);
         AbstractArticle = findViewById(R.id.ArticleAbstractInput);
         BodyArticle = findViewById(R.id.ArticleBodyInput);
-        CategoryArticle = findViewById(R.id.ArticleCategoryInput);
+        cSpinner = findViewById(R.id.SpinnerArticleCategoryInput);
         SubtitleArticle = findViewById(R.id.ArticleSubtitleInput);
         ArticleImageInput = findViewById(R.id.ArticleImageInput);
 
@@ -66,7 +68,7 @@ public class CreateArticle extends AppCompatActivity {
                 article_body = BodyArticle.getText().toString();
                 article_subtitle = SubtitleArticle.getText().toString();
                 showToast(article_title);
-
+                // save all entities to article
             }
         });
     }
@@ -83,6 +85,8 @@ public class CreateArticle extends AppCompatActivity {
                         Toast.makeText(this, data.getData().toString(), Toast.LENGTH_SHORT).show();
                         stream = getContentResolver().openInputStream(data.getData());
                         Bitmap bitmap = BitmapFactory.decodeStream(stream);
+                        // save image?
+
                         ((ImageView) findViewById(R.id.ArticleImageInput)).setImageBitmap(bitmap);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
