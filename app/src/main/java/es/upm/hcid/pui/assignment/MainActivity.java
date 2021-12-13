@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
@@ -27,11 +29,23 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ArticleAdapter mArticleAdapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
+        FloatingActionButton btnCreate = findViewById(R.id.btn_create_article);
+        btnCreate.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent (MainActivity.this, CreateArticle.class);
+                startActivity(i);
+            }
+        });
 
         try {
             initModelManager();
@@ -40,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        ((Button)findViewById(R.id.btn_create_article)).setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent (MainActivity.this, CreateArticle.class);
-//                startActivity(i);
-//            }
-//        });
     }
 
 
