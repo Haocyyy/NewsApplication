@@ -64,7 +64,6 @@ public class CreateArticle extends AppCompatActivity {
             public void onClick(View v) {
                 article_title = TitleArticle.getText().toString();
                 article_abstract = AbstractArticle.getText().toString();
-                article_category = CategoryArticle.getText().toString();
                 article_body = BodyArticle.getText().toString();
                 article_subtitle = SubtitleArticle.getText().toString();
                 showToast(article_title);
