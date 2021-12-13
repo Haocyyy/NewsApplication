@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_marginTop="10dp"
     android:layout_height="300dp">
@@ -9,46 +8,40 @@
         android:id="@+id/iv_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="#80FFFFFF"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/teal_700"
-            android:textSize="18sp" />
-
+            android:textSize="18sp"
+            android:textColor="@color/teal_200"/>
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_category"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="206dp"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="205dp"
-            android:textColor="@color/teal_700"
-            android:textSize="16sp" />
-
+            android:layout_below="@+id/tv_category"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/teal_200"/>
         <com.scrat.app.richtext.RichEditText
             android:id="@+id/r_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_title"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="6dp"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
+            android:layout_below="@+id/tv_title"
             android:textSize="14sp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:layout_centerHorizontal="true"
+            />
 
     </RelativeLayout>
 
