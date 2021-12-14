@@ -3,6 +3,7 @@ package es.upm.hcid.pui.assignment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -39,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton btnCreate = findViewById(R.id.btn_create_article);
         btnCreate.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 Intent i = new Intent (MainActivity.this, CreateArticle.class);
                 startActivity(i);
             }
         });
+
+
 
         try {
             initModelManager();
@@ -57,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     private void initView() {
         mSpinner = findViewById(R.id.sp_article);
         mSpinner.setSelection(0);
+
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -74,8 +80,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mRecyclerView = findViewById(R.id.rv_content);
-        mArticleAdapter = new ArticleAdapter();
+        mArticleAdapter = new ArticleAdapter(this);
         mRecyclerView.setAdapter(mArticleAdapter);
+
 
     }
 
@@ -123,4 +130,5 @@ public class MainActivity extends AppCompatActivity {
         }).start();
         mCountDownLatch.await();
     }
+
 }

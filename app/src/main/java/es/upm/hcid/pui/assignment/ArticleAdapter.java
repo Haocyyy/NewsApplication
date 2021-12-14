@@ -1,14 +1,24 @@
 package es.upm.hcid.pui.assignment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.Layout;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+
 import com.scrat.app.richtext.RichEditText;
 
 import java.util.ArrayList;
@@ -19,15 +29,17 @@ import es.upm.hcid.pui.assignment.exceptions.ServerCommunicationError;
 public class ArticleAdapter extends BaseQuickAdapter<Article, BaseViewHolder> implements Filterable {
     private List<Article> mSourceArticleList;
     private List<Article> mFilterArticleList;
-    public ArticleAdapter() {
+    private static Context context;
+    public ArticleAdapter(Context context) {
         super(R.layout.item_article);
-
         mSourceArticleList = new ArrayList<>();
         mFilterArticleList = new ArrayList<>();
+
     }
 
+
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, Article article) {
+    protected void convert(BaseViewHolder baseViewHolder, Article article){
         try {
             baseViewHolder.setImageBitmap(R.id.iv_bg,
                     getBitmap(article.getImage().getImage()));
@@ -37,7 +49,27 @@ public class ArticleAdapter extends BaseQuickAdapter<Article, BaseViewHolder> im
 
         baseViewHolder.setText(R.id.tv_title, article.getTitleText());
         baseViewHolder.setText(R.id.tv_category, article.getCategory());
-        ((RichEditText)(baseViewHolder.getView(R.id.r_text))).fromHtml(article.getAbstractText());
+
+
+
+        RelativeLayout detailed_layout = baseViewHolder.getView(R.id.detailed_layout);
+        detailed_layout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view1) {
+                // with context you take the parent of the function where it's being runned in
+
+                Intent intent1 = new Intent (view1.getContext(), DetailArticle.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//because we use Application context
+
+                intent1.putExtra("passed_article_id", article.getId());
+                intent1.putExtra("passed_article_title", article.getTitleText());
+                intent1.putExtra("passed_article_category", article.getCategory());
+                intent1.putExtra("passed_article_abstract", article.getAbstractText());
+
+
+                view1.getContext().startActivity(intent1);
+            }
+        });
     }
 
     @Override
