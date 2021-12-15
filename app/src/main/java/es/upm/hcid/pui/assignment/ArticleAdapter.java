@@ -4,17 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.Layout;
 import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -49,6 +44,8 @@ public class ArticleAdapter extends BaseQuickAdapter<Article, BaseViewHolder> im
 
         baseViewHolder.setText(R.id.tv_title, article.getTitleText());
         baseViewHolder.setText(R.id.tv_category, article.getCategory());
+        ((RichEditText)(baseViewHolder.getView(R.id.tv_abstract))).fromHtml(article.getAbstractText());
+
 
 
 
