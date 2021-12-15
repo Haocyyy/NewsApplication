@@ -47,8 +47,6 @@ public class ArticleAdapter extends BaseQuickAdapter<Article, BaseViewHolder> im
         ((RichEditText)(baseViewHolder.getView(R.id.tv_abstract))).fromHtml(article.getAbstractText());
 
 
-
-
         RelativeLayout detailed_layout = baseViewHolder.getView(R.id.detailed_layout);
         detailed_layout.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -59,11 +57,6 @@ public class ArticleAdapter extends BaseQuickAdapter<Article, BaseViewHolder> im
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//because we use Application context
 
                 intent1.putExtra("passed_article_id", article.getId());
-                intent1.putExtra("passed_article_title", article.getTitleText());
-                intent1.putExtra("passed_article_category", article.getCategory());
-                intent1.putExtra("passed_article_abstract", article.getAbstractText());
-
-
                 view1.getContext().startActivity(intent1);
             }
         });

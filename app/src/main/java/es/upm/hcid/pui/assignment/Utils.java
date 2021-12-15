@@ -73,23 +73,28 @@ public class Utils {
 
 		Bitmap resizedImg = Bitmap.createScaledBitmap(src, finalw, finalh, true);
 		return resizedImg;
-	}
+	};
 
 	public static String createScaledStrImage(String strSrc, int w, int h){
 		Bitmap src = base64StringToImg(strSrc);
 		int finalw = w;
 		int finalh = h;
 		double factor = 1.0d;
-		if(src.getWidth() > src.getHeight()){
-			factor = ((double)src.getHeight()/(double)src.getWidth());
-			finalh = (int)(finalw * factor);
-		}else{
-			factor = ((double)src.getWidth()/(double)src.getHeight());
-			finalw = (int)(finalh * factor);
+		if (src != null) {
+			if (src.getWidth() > src.getHeight()) {
+				factor = ((double) src.getHeight() / (double) src.getWidth());
+				finalh = (int) (finalw * factor);
+			} else {
+				factor = ((double) src.getWidth() / (double) src.getHeight());
+				finalw = (int) (finalh * factor);
+			}
+
+			Bitmap resizedImg = Bitmap.createScaledBitmap(src, finalw, finalh, true);
+			return imgToBase64String(resizedImg);
+		} else {
+			return null;
 		}
 
-		Bitmap resizedImg = Bitmap.createScaledBitmap(src, finalw, finalh, true);
-		return imgToBase64String(resizedImg);
-	}
+	};
 
 }

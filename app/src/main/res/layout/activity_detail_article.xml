@@ -7,6 +7,7 @@
     tools:context=".DetailArticle">
 
     <LinearLayout
+        android:id="@+id/linear_layout_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -20,40 +21,37 @@
             android:id="@+id/details_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:gravity="center"
             android:text="Title" />
-
-        <EditText
-            android:id="@+id/details_subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Subtitle" />
 
         <EditText
             android:id="@+id/details_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:gravity="center"
             android:text="Category" />
 
         <EditText
             android:id="@+id/details_abstract"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
+            android:editable="false"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:gravity="center"
             android:text="Abstract" />
 
-        <EditText
+        <com.scrat.app.richtext.RichEditText
             android:id="@+id/details_body"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="154dp"
+            android:editable="false"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:gravity="top|center_vertical"
+            android:singleLine="false"
             android:text="Body" />
 
         <ImageView
@@ -62,29 +60,40 @@
             android:layout_height="200dp"
             app:srcCompat="@drawable/ic_pic_fill" />
 
-        <Button
-            android:id="@+id/save_button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Change Image" />
+            android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/details_id_date"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btn_delete_image"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="''user_id&quot; edited the article on &quot;modification_date&quot;"
-                android:textAlignment="center" />
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:text="Delete Image" />
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/btn_select_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:text="Select Image" />
+        </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+
+        android:text="TextView" />
+</RelativeLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

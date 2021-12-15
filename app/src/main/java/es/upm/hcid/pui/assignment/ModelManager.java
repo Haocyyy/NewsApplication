@@ -369,7 +369,7 @@ public class ModelManager {
 	}
 
 	
-	private int saveArticle(Article a) throws ServerCommunicationError{
+	public int saveArticle(Article a) throws ServerCommunicationError{
 		try{
 			String parameters =  "";
 			String request = serviceUrl + "article";

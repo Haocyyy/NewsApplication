@@ -26,7 +26,7 @@ import es.upm.hcid.pui.assignment.exceptions.ServerCommunicationError;
 public class MainActivity extends AppCompatActivity {
 
     private CountDownLatch mCountDownLatch = new CountDownLatch(1);
-    private ModelManager mm = null;
+    public static ModelManager mm = null;
 
     private Spinner mSpinner;
     private RecyclerView mRecyclerView;
@@ -87,22 +87,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getArticleList() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    List<Article> dataArticles = mm.getArticles();
-                    mRecyclerView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(dataArticles != null){
-                                mArticleAdapter.setNewInstance(dataArticles);
-                            }
+        new Thread(() -> {
+            try {
+                List<Article> dataArticles = mm.getArticles();
+                mRecyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(dataArticles != null){
+                            mArticleAdapter.setNewInstance(dataArticles);
                         }
-                    });
-                } catch (ServerCommunicationError serverCommunicationError) {
-                    serverCommunicationError.printStackTrace();
-                }
+                    }
+                });
+            } catch (ServerCommunicationError serverCommunicationError) {
+                serverCommunicationError.printStackTrace();
             }
         }).start();
     }

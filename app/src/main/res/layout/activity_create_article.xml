@@ -26,6 +26,7 @@
             android:id="@+id/ArticleTitleInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             android:ems="10"
             android:hint="Title"
             android:inputType="textPersonName" />
@@ -34,6 +35,7 @@
             android:id="@+id/ArticleAbstractInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:editable="false"
             android:ems="10"
             android:hint="Abstract"
             android:inputType="textPersonName" />

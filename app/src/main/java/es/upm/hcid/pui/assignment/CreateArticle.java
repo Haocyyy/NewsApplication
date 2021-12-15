@@ -30,9 +30,9 @@ public class CreateArticle extends AppCompatActivity {
     EditText AbstractArticle;
     EditText BodyArticle;
     private Spinner cSpinner;
-    EditText SubtitleArticle;
     ImageView ArticleImageInput;
     Button btn_save_article;
+    Button btn_delete_article;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class CreateArticle extends AppCompatActivity {
         AbstractArticle = findViewById(R.id.ArticleAbstractInput);
         BodyArticle = findViewById(R.id.ArticleBodyInput);
         cSpinner = findViewById(R.id.SpinnerArticleCategoryInput);
-        SubtitleArticle = findViewById(R.id.ArticleSubtitleInput);
         ArticleImageInput = findViewById(R.id.ArticleImageInput);
+
 
         ((Button)findViewById(R.id.btn_select_image)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,6 @@ public class CreateArticle extends AppCompatActivity {
                 article_title = TitleArticle.getText().toString();
                 article_abstract = AbstractArticle.getText().toString();
                 article_body = BodyArticle.getText().toString();
-                article_subtitle = SubtitleArticle.getText().toString();
                 showToast(article_title);
                 // save all entities to article
             }
@@ -84,7 +83,7 @@ public class CreateArticle extends AppCompatActivity {
                         Toast.makeText(this, data.getData().toString(), Toast.LENGTH_SHORT).show();
                         stream = getContentResolver().openInputStream(data.getData());
                         Bitmap bitmap = BitmapFactory.decodeStream(stream);
-                        // save image?
+                        // set image to article and reload article (save article)
 
                         ((ImageView) findViewById(R.id.ArticleImageInput)).setImageBitmap(bitmap);
                     } catch (FileNotFoundException e) {
