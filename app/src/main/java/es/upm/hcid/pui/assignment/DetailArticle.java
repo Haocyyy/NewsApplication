@@ -29,6 +29,7 @@ import es.upm.hcid.pui.assignment.exceptions.ServerCommunicationError;
 
 public class DetailArticle extends AppCompatActivity {
     private static final int REQUEST_CODE_OPEN_IMAGE = 1;
+    private static final int REQUEST_CODE_DELETE_IMAGE = 2;
     private ModelManager mm = null;
 
     Integer article_id;
@@ -41,10 +42,11 @@ public class DetailArticle extends AppCompatActivity {
         this.article_id = getIntent().getIntExtra("passed_article_id", -1);
         getArticle();
         initiateImageChange();
+        initiateDeleteImage();
     }
 
     private void initiateImageChange() {
-        ((Button)findViewById(R.id.btn_select_image)).setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.btn_select_image)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent();
@@ -54,6 +56,16 @@ public class DetailArticle extends AppCompatActivity {
                 startActivityForResult(i, REQUEST_CODE_OPEN_IMAGE);
             }
         });
+    }
+
+        private void initiateDeleteImage() {
+            ((Button)findViewById(R.id.btn_delete_image)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View View) {
+                    Intent i = new Intent();
+                    startActivityForResult(i, REQUEST_CODE_DELETE_IMAGE);
+                }
+            });
     }
 
     void getArticle(){
@@ -87,12 +99,29 @@ public class DetailArticle extends AppCompatActivity {
         TextView abstract_article = findViewById(R.id.details_abstract);
         TextView body_article = findViewById(R.id.details_body);
         ImageView image_article = findViewById(R.id.details_image);
+//        TextView user_id_article = findViewById(R.id.user_id);
 
         title_article.setText(article_object.getTitleText());
         category_article.setText(article_object.getCategory());
         abstract_article.setText(article_object.getAbstractText());
         body_article.setText(article_object.getBodyText());
+//        user_id_article.setText(article_object.getIdUser());
         image_article.setImageBitmap(Utils.base64StringToImg(article_object.getImage().getImage()));
+    }
+
+    void saveImageToArticle(Bitmap bitmap) throws ServerCommunicationError {
+        String new_image = Utils.imgToBase64String(bitmap);
+        String img = Utils.createScaledStrImage(new_image, 500, 500);
+        this.article_object.addImage(img, "new_image");
+
+        new Thread(() -> {
+            try {
+                MainActivity.mm.saveArticle(this.article_object);
+            } catch (ServerCommunicationError serverCommunicationError) {
+                serverCommunicationError.printStackTrace();
+            }
+        }).start();
+
     }
 
     @Override
@@ -109,8 +138,12 @@ public class DetailArticle extends AppCompatActivity {
                         Bitmap bitmap = BitmapFactory.decodeStream(stream);
                         // set image to article and reload article (save article)
                         saveImageToArticle(bitmap);
-                    } catch (FileNotFoundException | ServerCommunicationError e) {
+                        ((ImageView) findViewById(R.id.details_image)).setImageBitmap(bitmap);
+
+                    } catch (FileNotFoundException e) {
                         e.printStackTrace();
+                    } catch (ServerCommunicationError serverCommunicationError) {
+                        serverCommunicationError.printStackTrace();
                     } finally {
                         if (stream != null) {
                             try {
@@ -127,42 +160,12 @@ public class DetailArticle extends AppCompatActivity {
                 break;
             default:
 
+
+            case REQUEST_CODE_DELETE_IMAGE:
+                
         }
     }
 
 
-    void saveImageToArticle(Bitmap bitmap) throws ServerCommunicationError {
-        String new_image = Utils.encodeImage(bitmap);
 
-        article_object.addImage(new_image, "new_image");
-
-        try {
-            Image img = article_object.getImage();
-            if (img != null) {
-                String str = img.getImage();
-                if (str != null) {
-                    bitmap = Utils.base64StringToImg(new_image);
-                }
-            }
-        } catch (ServerCommunicationError serverCommunicationError) {
-            System.out.println("oh no");
-        }
-        if (bitmap == null) {
-            ((ImageView) findViewById(R.id.details_image)).setImageResource(R.drawable.brvah_sample_footer_loading);
-
-        } else {
-            ((ImageView) findViewById(R.id.details_image)).setImageBitmap(bitmap);
-
-        }
-
-        new Thread(() -> {
-            try {
-                MainActivity.mm.saveArticle(this.article_object);
-
-            } catch (ServerCommunicationError serverCommunicationError) {
-                serverCommunicationError.printStackTrace();
-            }
-        }).start();
-
-    }
 }

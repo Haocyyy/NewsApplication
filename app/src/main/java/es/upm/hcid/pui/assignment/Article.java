@@ -22,7 +22,10 @@ public class Article extends ModelEntity{
 	private String thumbnail;
 
 	private String parseStringFromJson(JSONObject jsonArticle, String key, String def){
-		Object in = jsonArticle.getOrDefault(key,def);
+		Object in = null;
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+			in = jsonArticle.getOrDefault(key,def);
+		}
 		return (in==null?def:in).toString();
 	}
 

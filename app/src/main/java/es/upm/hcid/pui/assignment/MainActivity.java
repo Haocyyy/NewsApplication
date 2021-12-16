@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
 
-        FloatingActionButton btnCreate = findViewById(R.id.btn_create_article);
-        btnCreate.setOnClickListener(new View.OnClickListener(){
+        FloatingActionButton btnLogin = findViewById(R.id.btn_create_article);
+        btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent (MainActivity.this, CreateArticle.class);
-                startActivity(i);
+//                Intent i = new Intent (MainActivity.this, CreateArticle.class);
+//                startActivity(i);
             }
         });
 
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             initModelManager();
-            getArticleList();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -118,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
 
                 try{
                     mm = new ModelManager(prop);
+                    // getArticlesList must be summoned right after the model is formed
+                    getArticleList();
                 }catch (AuthenticationError e) {
                     e.printStackTrace();
                 }
