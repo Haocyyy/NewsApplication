@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -98,13 +99,14 @@ public class DetailArticle extends AppCompatActivity {
         TextView category_article = findViewById(R.id.details_category);
         TextView abstract_article = findViewById(R.id.details_abstract);
         TextView body_article = findViewById(R.id.details_body);
+
         ImageView image_article = findViewById(R.id.details_image);
 //        TextView user_id_article = findViewById(R.id.user_id);
 
         title_article.setText(article_object.getTitleText());
         category_article.setText(article_object.getCategory());
-        abstract_article.setText(article_object.getAbstractText());
-        body_article.setText(article_object.getBodyText());
+        abstract_article.setText(Html.fromHtml(article_object.getAbstractText()));
+        body_article.setText(Html.fromHtml(article_object.getBodyText()));
 //        user_id_article.setText(article_object.getIdUser());
         image_article.setImageBitmap(Utils.base64StringToImg(article_object.getImage().getImage()));
     }
