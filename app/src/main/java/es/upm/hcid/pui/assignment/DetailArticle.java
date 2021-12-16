@@ -42,7 +42,7 @@ public class DetailArticle extends AppCompatActivity {
         this.article_id = getIntent().getIntExtra("passed_article_id", -1);
         getArticle();
         initiateImageChange();
-        initiateDeleteImage();
+//        initiateDeleteImage();
     }
 
     private void initiateImageChange() {
@@ -58,15 +58,15 @@ public class DetailArticle extends AppCompatActivity {
         });
     }
 
-        private void initiateDeleteImage() {
-            ((Button)findViewById(R.id.btn_delete_image)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View View) {
-                    Intent i = new Intent();
-                    startActivityForResult(i, REQUEST_CODE_DELETE_IMAGE);
-                }
-            });
-    }
+//        private void initiateDeleteImage() {
+//            ((Button)findViewById(R.id.btn_delete_image)).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View View) {
+//                    Intent i = new Intent();
+//                    startActivityForResult(i, REQUEST_CODE_DELETE_IMAGE);
+//                }
+//            });
+//    }
 
     void getArticle(){
         new Thread(() -> {
@@ -124,6 +124,7 @@ public class DetailArticle extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -140,10 +141,8 @@ public class DetailArticle extends AppCompatActivity {
                         saveImageToArticle(bitmap);
                         ((ImageView) findViewById(R.id.details_image)).setImageBitmap(bitmap);
 
-                    } catch (FileNotFoundException e) {
+                    } catch (FileNotFoundException | ServerCommunicationError e) {
                         e.printStackTrace();
-                    } catch (ServerCommunicationError serverCommunicationError) {
-                        serverCommunicationError.printStackTrace();
                     } finally {
                         if (stream != null) {
                             try {
@@ -158,11 +157,36 @@ public class DetailArticle extends AppCompatActivity {
                     Toast.makeText(this, "User cancelled the selection", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+
+
+//            case REQUEST_CODE_DELETE_IMAGE:
+//                if (resultCode == Activity.RESULT_OK) {
+//                    InputStream stream = null;
+//                    try {
+//                        new Thread(() -> {
+//                            try {
+//                                MainActivity.mm.deleteImage(this.article_object.getId());
+//                            } catch (ServerCommunicationError serverCommunicationError) {
+//                                serverCommunicationError.printStackTrace();
+//                            }
+//                        }).start();
+//
+//                    } finally {
+//                        if (stream != null) {
+//                            try {
+//                                stream.close();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//
+//                } else {
+//                    Toast.makeText(this, "User cancelled the selection", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
             default:
-
-
-            case REQUEST_CODE_DELETE_IMAGE:
-                
         }
     }
 

@@ -473,7 +473,7 @@ public class ModelManager {
 		}
 	}
 
-	private void deleteImage(int idArticle) throws ServerCommunicationError{
+	public void deleteImage(int idArticle) throws ServerCommunicationError{
 		try{
 			String parameters =  "";
 			String request = serviceUrl + "image/" + idArticle;

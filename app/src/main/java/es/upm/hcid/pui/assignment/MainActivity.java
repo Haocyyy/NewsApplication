@@ -40,15 +40,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
 
-        FloatingActionButton btnLogin = findViewById(R.id.btn_create_article);
-        btnLogin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
+//        FloatingActionButton btnLogin = findViewById(R.id.btn_create_article);
+//        btnLogin.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
 //                Intent i = new Intent (MainActivity.this, CreateArticle.class);
 //                startActivity(i);
-            }
-        });
-
+//            }
+//        });
 
 
         try {
